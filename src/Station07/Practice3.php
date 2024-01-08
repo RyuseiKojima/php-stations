@@ -6,7 +6,13 @@ class Practice3
 {
     public function main(): void
     {
-        // ここにサンプルコードを記述
+      $array = ['apple' => 3, 'banana' => 6, 'rime' => 7];
+
+      array_walk($array, function (&$value) {
+          $value = $value - 1;
+      });
+
+      print_r($array);
     }
 }
 

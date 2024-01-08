@@ -4,3 +4,4 @@
 .techtrain/config.toml
 ./test-outputs/*.xml
 .exec*
+.php-cs-fixer.cache

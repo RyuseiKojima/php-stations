@@ -6,7 +6,14 @@ class Practice1
 {
     public function main(): void
     {
-        // ここにサンプルコードを記述
+      $a = 'foo';
+      switch ($a) {
+          case 'foo':
+              echo '$aは foo です' . PHP_EOL;
+              break;
+          default:
+              echo '$aは foo 以外です' . PHP_EOL;
+      }
     }
 }
 

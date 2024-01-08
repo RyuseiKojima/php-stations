@@ -8,7 +8,8 @@ class Practice
 {
     public function main(): void
     {
-        // ここにサンプルコードを記述
+      $dog = new Dog();
+      echo $dog->active();
     }
 }
 

@@ -6,9 +6,12 @@ class Question
 {
     public function main(): array
     {
-        $a = ;
-        $b = ;
+        $a = 1;
+        $b = true;
+        echo gettype($a) . PHP_EOL.gettype($b) ;
 
         return [$a, $b];
     }
 }
+
+(new Question())->main();

@@ -1,6 +1,6 @@
 <?php
 
-namespace Src\Station13\Question;
+namespace Src\Station14\Question;
 
 class Vehicle
 {

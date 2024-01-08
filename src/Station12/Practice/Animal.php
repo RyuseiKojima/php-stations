@@ -18,4 +18,11 @@ class Animal
     {
         echo '活動する';
     }
+
+    public $type;
+
+    public function __construct($type)
+    {
+        $this->type = $type;
+    }
 }
