@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Src\Station13\Question;
 
@@ -8,9 +8,9 @@ class Question
 {
     public function main(): void
     {
-      $car = new Car();
-      $car->turnRight();
-      $car->backLeft();
+        $car = new Car();
+        $car->turnRight();
+        $car->backLeft();
     }
 }
 

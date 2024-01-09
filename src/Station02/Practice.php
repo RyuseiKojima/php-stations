@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Src\Station02;
 
@@ -6,14 +6,14 @@ class Practice
 {
     public function main(): void
     {
-      $a = 1;
-      $b = '1';
+        $a = 1;
+        $b = '1';
 
-      if ($a == $b) { // 緩やかな比較にする
-          echo '等しい';
-      } else {
-          echo '等しくない';
-      }
+        if ($a === $b) { // 緩やかな比較にする
+            echo '等しい';
+        } else {
+            echo '等しくない';
+        }
     }
 }
 

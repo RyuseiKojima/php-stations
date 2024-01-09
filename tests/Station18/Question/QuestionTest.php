@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Tests\Station18\Question;
 
@@ -16,19 +16,19 @@ class QuestionTest extends TestCase
     private const FILE_PATH = __DIR__ . '../../../../src/Station18/Question/Question.php';
 
     /**
-     * @test
+     *
      */
-    public function getArray関数内の配列の宣言がshortである(): void
+    public function testGetArray関数内の配列の宣言がshortである(): void
     {
         $getArray = $this->method(self::FILE_PATH, 'getArray');
 
-        $this->assertEquals($getArray->getStmts()[0]->expr->getAttributes()['kind'], Array_::KIND_SHORT);
+        $this->assertSame($getArray->getStmts()[0]->expr->getAttributes()['kind'], Array_::KIND_SHORT);
     }
 
     /**
-     * @test
+     *
      */
-    public function 関数の順序が正しくならんでいる(): void
+    public function test関数の順序が正しくならんでいる(): void
     {
         $getArray = $this->method(self::FILE_PATH, 'getArray');
         $main = $this->method(self::FILE_PATH, 'main');
@@ -40,9 +40,9 @@ class QuestionTest extends TestCase
     }
 
     /**
-     * @test
+     *
      */
-    public function elseが使用されていないこと(): void
+    public function testElseが使用されていないこと(): void
     {
         $main = $this->method(self::FILE_PATH, 'main');
 
@@ -50,9 +50,9 @@ class QuestionTest extends TestCase
     }
 
     /**
-     * @test
+     *
      */
-    public function php_cs_fixerの結果確認(): void
+    public function testPhp_cs_fixerの結果確認(): void
     {
         $cmd = './vendor/bin/php-cs-fixer fix --dry-run ./src/Station18/Question/Question.php --config=./src/Station18/Question/.php-cs-fixer.php';
         exec($cmd, $result);
@@ -60,4 +60,3 @@ class QuestionTest extends TestCase
         $this->assertTrue(str_starts_with($result[1], 'Found 0 of 1 files that can be fixed'));
     }
 }
-

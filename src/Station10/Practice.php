@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Src\Station10;
 
@@ -6,7 +6,7 @@ class Practice
 {
     public function main(): void
     {
-      $this->checkEvenOrOdd(10);
+        $this->checkEvenOrOdd(10);
     }
     private function checkEvenOrOdd($number)
     {

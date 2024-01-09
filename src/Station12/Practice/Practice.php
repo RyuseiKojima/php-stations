@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Src\Station12\Practice;
 
@@ -8,8 +8,8 @@ class Practice
 {
     public function main(): void
     {
-      $bird = new Bird('parrot');
-      echo $bird->type;
+        $bird = new Bird('parrot');
+        echo $bird->type;
     }
 }
 

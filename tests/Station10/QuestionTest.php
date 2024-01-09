@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Tests\Station10;
 
@@ -13,7 +13,7 @@ class QuestionTest extends TestCase
 {
     private Question $question;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -21,10 +21,10 @@ class QuestionTest extends TestCase
     }
 
     /**
-     * @test
+     *
      * @dataProvider dataProvider_引数に応じた文字列
      */
-    public function 引数に応じて動物の名前を返す(string $animal, string $expected): void
+    public function test引数に応じて動物の名前を返す(string $animal, string $expected): void
     {
         $actual = $this->question->main($animal);
 
@@ -32,10 +32,10 @@ class QuestionTest extends TestCase
     }
 
     /**
-     * @test
+     *
      * @dataProvider dataProvider_引数に応じた文字列
      */
-    public function 仕様に準じたgetAnimalNameメソッドが定義されている(string $animal, string $expected): void
+    public function test仕様に準じたgetAnimalNameメソッドが定義されている(string $animal, string $expected): void
     {
         $reflection = new ReflectionClass($this->question);
         $method = $reflection->getMethod('getAnimalName');
@@ -45,7 +45,7 @@ class QuestionTest extends TestCase
         $this->assertSame($expected, $actual);
     }
 
-    public function dataProvider_引数に応じた文字列(): array
+    public function dataProvider_引数に応じた文字列(): iterable
     {
         return [
             ['猫', 'ミケ'],

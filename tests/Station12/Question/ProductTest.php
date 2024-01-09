@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Tests\Station12\Question;
 
@@ -13,9 +13,9 @@ use Src\Station12\Question\Product;
 class ProductTest extends TestCase
 {
     /**
-     * @test
+     *
      */
-    public function originalPriceプロパティが定義されている(): void
+    public function testOriginalPriceプロパティが定義されている(): void
     {
         $product = new ReflectionClass(Product::class);
 

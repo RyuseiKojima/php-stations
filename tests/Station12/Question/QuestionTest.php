@@ -1,24 +1,25 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Tests\Station12\Question;
 
 use Carbon\CarbonImmutable;
 use PHPUnit\Framework\TestCase;
 use Src\Station12\Question\Question;
+use Closure;
 
 /**
  * @group station12
  */
 class QuestionTest extends TestCase
 {
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 
         CarbonImmutable::setTestNow(CarbonImmutable::now());
     }
 
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         CarbonImmutable::setTestNow();
 
@@ -26,31 +27,30 @@ class QuestionTest extends TestCase
     }
 
     /**
-     * @test
-     * @dataProvider dataProvider_定価と消費期限の入力に応じた価格
+     *
+     * @dataProvider provide定価と消費期限の入力に対して価格を返すCases
      */
-    public function 定価と消費期限の入力に対して価格を返す(
+    public function test定価と消費期限の入力に対して価格を返す(
         int $originalPrice,
-        \Closure $useByDate,
+        Closure $useByDate,
         int $expected
-    ): void
-    {
+    ): void {
         $actual = (new Question)->main($originalPrice, $useByDate());
 
-        $this->assertEquals($expected, $actual);
+        $this->assertSame($expected, $actual);
     }
 
-    public function dataProvider_定価と消費期限の入力に応じた価格(): array
+    public function provide定価と消費期限の入力に対して価格を返すCases(): iterable
     {
         return [
             '価格 == 定価' => [
                 500,
-                fn() => CarbonImmutable::now()->addHours(5),
+                static fn () => CarbonImmutable::now()->addHours(5),
                 500,
             ],
             '価格 == 定価/2' => [
                 500,
-                fn() => CarbonImmutable::now()->addHours(5)->subSecond(),
+                static fn () => CarbonImmutable::now()->addHours(5)->subSecond(),
                 250,
             ],
         ];

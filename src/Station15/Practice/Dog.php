@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Src\Station15\Practice;
 
@@ -8,7 +8,7 @@ class Dog
     protected $gender;
     private $age;
 
-    function __construct()
+    public function __construct()
     {
         $this->name = "pochi";
         $this->gender = "male";
@@ -16,7 +16,8 @@ class Dog
     }
 }
 
-function main() {
+function main()
+{
 
     $i = 100;
 

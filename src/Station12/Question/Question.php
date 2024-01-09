@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Src\Station12\Question;
 
@@ -8,10 +8,10 @@ use Carbon\CarbonImmutable;
 
 class Question
 {
-    public function main(int $originalPrice, CarbonImmutable $useByDate) 
+    public function main(int $originalPrice, CarbonImmutable $useByDate)
     {
-      $food = new Food($originalPrice, $useByDate);
-      echo $food->price();
-      return $food->price();
+        $food = new Food($originalPrice, $useByDate);
+        echo $food->price();
+        return $food->price();
     }
 }

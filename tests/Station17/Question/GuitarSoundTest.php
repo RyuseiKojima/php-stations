@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Tests\Station17\Question;
 
@@ -8,6 +8,7 @@ use ReflectionClass;
 use ReflectionMethod;
 use Src\Station17\Question\GuitarSound;
 use Src\Station17\Question\SoundInterface;
+use function count;
 
 /**
  * @group station17
@@ -16,7 +17,7 @@ class GuitarSoundTest extends TestCase
 {
     private GuitarSound $guitarSound;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -24,9 +25,9 @@ class GuitarSoundTest extends TestCase
     }
 
     /**
-     * @test
+     *
      */
-    public function SoundInterfaceをimplementsしている(): void
+    public function testSoundInterfaceをimplementsしている(): void
     {
         $implements = class_implements($this->guitarSound);
 
@@ -34,27 +35,27 @@ class GuitarSoundTest extends TestCase
     }
 
     /**
-     * @test
+     *
      */
-    public function 文字列ギターを値に持つ定数INSTRUMENT_NAMEを定義している(): void
+    public function test文字列ギターを値に持つ定数INSTRUMENT_NAMEを定義している(): void
     {
         $guitarSound = new ReflectionClass($this->guitarSound);
 
-        $this->assertEquals('ギター', $guitarSound->getConstant('INSTRUMENT_NAME'));
+        $this->assertSame('ギター', $guitarSound->getConstant('INSTRUMENT_NAME'));
     }
 
     /**
-     * @test
-     * @dataProvider dataProvider_isValidatedInputに対する入力と期待値
+     *
+     * @dataProvider provideIsValidatedInput_CDEFGABに該当するか否かを検証するCases
      */
-    public function isValidatedInput_CDEFGABに該当するか否かを検証する(string|int $input, bool $expected): void
+    public function testIsValidatedInput_CDEFGABに該当するか否かを検証する(string|int $input, bool $expected): void
     {
         $actual = $this->guitarSound->isValidatedInput($input);
 
-        $this->assertEquals($expected, $actual);
+        $this->assertSame($expected, $actual);
     }
 
-    public function dataProvider_isValidatedInputに対する入力と期待値(): array
+    public function provideIsValidatedInput_CDEFGABに該当するか否かを検証するCases(): iterable
     {
         return [
             '有効: C' => ['C', true],
@@ -72,34 +73,34 @@ class GuitarSoundTest extends TestCase
     }
 
     /**
-     * @test
+     *
      *
      * この問題では sound の引数は isValidatedInput を経由したものに限るため
      * 細かな例外チェックは行わない
      */
-    public function sound_文字列_エフェクトをかけたギターの引数文字_を返す(): void
+    public function testSound_文字列_エフェクトをかけたギターの引数文字_を返す(): void
     {
         $actual = $this->guitarSound->sound('C');
 
-        $this->assertEquals('エフェクトをかけたギターのC', $actual);
+        $this->assertSame('エフェクトをかけたギターのC', $actual);
     }
 
     /**
-     * @test
+     *
      */
-    public function effect_文字列_エフェクトをかけたギターの引数文字_を返す(): void
+    public function testEffect_文字列_エフェクトをかけたギターの引数文字_を返す(): void
     {
         $method = new ReflectionMethod($this->guitarSound, 'effect');
 
         $actual = $method->invoke($this->guitarSound, 'C');
 
-        $this->assertEquals('エフェクトをかけたギターのC', $actual);
+        $this->assertSame('エフェクトをかけたギターのC', $actual);
     }
 
     /**
-     * @test
+     *
      */
-    public function effectメソッドのアクセス修飾子がprivateである(): void
+    public function testEffectメソッドのアクセス修飾子がprivateである(): void
     {
         try {
             $this->guitarSound->effect();

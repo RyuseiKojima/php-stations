@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Src\Station13\Practice;
 
@@ -8,8 +8,8 @@ class Practice
 {
     public function main(): void
     {
-      $dog = new Dog();
-      echo $dog->active();
+        $dog = new Dog();
+        echo $dog->active();
     }
 }
 

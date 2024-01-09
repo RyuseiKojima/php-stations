@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Tests\Station09;
 
@@ -9,7 +9,7 @@ class QuestionTest extends TestCase
 {
     private Question $question;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -17,14 +17,14 @@ class QuestionTest extends TestCase
     }
 
     /**
-     * @test
+     *
      * @group station09
      */
-    public function ageとfull_name要素の追加_password要素を削除した連想配列を返す(): void
+    public function testAgeとfull_name要素の追加_password要素を削除した連想配列を返す(): void
     {
         $actual = $this->question->main();
 
-        $this->assertEquals([
+        $this->assertSame([
             [
                 'id' => 1,
                 'last_name' => '山田',

@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Tests\Station03;
 
@@ -9,7 +9,7 @@ class QuestionTest extends TestCase
 {
     private Question $question;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -17,18 +17,18 @@ class QuestionTest extends TestCase
     }
 
     /**
-     * @test
+     *
      * @group station03
-     * @dataProvider dataProvider_引数に応じた文字列
+     * @dataProvider provide引数に応じた文字列を返すCases
      */
-    public function 引数に応じた文字列を返す(mixed $arg, string $expected): void
+    public function test引数に応じた文字列を返す(mixed $arg, string $expected): void
     {
         $result = $this->question->main($arg);
 
         $this->assertSame($expected, $result);
     }
 
-    public function dataProvider_引数に応じた文字列(): array
+    public function provide引数に応じた文字列を返すCases(): iterable
     {
         return [
             [1, 'りんご'],

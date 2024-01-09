@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Tests\Station06;
 
@@ -9,7 +9,7 @@ class QuestionTest extends TestCase
 {
     private Question $question;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -17,10 +17,10 @@ class QuestionTest extends TestCase
     }
 
     /**
-     * @test
+     *
      * @group station06
      */
-    public function 期待値と一致する配列を返す(): void
+    public function test期待値と一致する配列を返す(): void
     {
         $actual = $this->question->main();
 

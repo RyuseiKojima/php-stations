@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Src\Station14\Practice;
 
@@ -9,6 +9,6 @@ class Dog extends Animal
 
     public static function barking()
     {
-      echo self::VOICE;
+        echo self::VOICE;
     }
 }

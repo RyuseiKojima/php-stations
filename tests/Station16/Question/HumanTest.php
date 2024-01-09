@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Tests\Station16\Question;
 
@@ -18,17 +18,17 @@ class HumanTest extends TestCase
     private const FILE_PATH = __DIR__ . '../../../../src/Station16/Question/Human.php';
 
     /**
-     * @test
+     *
      */
-    public function nameプロパティを持つ(): void
+    public function testNameプロパティを持つ(): void
     {
         $this->assertClassHasAttribute('name', Human::class);
     }
 
     /**
-     * @test
+     *
      */
-    public function nameプロパティの型定義がstringである(): void
+    public function testNameプロパティの型定義がstringである(): void
     {
         $name = $this->property(self::FILE_PATH, 'name');
 
@@ -36,9 +36,9 @@ class HumanTest extends TestCase
     }
 
     /**
-     * @test
+     *
      */
-    public function constructor_nameプロパティに値を代入する(): void
+    public function testConstructor_nameプロパティに値を代入する(): void
     {
         $namedHuman = new Human('constructor-test');
         $reflection = new ReflectionClass(Human::class);
@@ -47,9 +47,9 @@ class HumanTest extends TestCase
     }
 
     /**
-     * @test
+     *
      */
-    private function constructor_引数nameの型定義がstringである(): void
+    private function testConstructor_引数nameの型定義がstringである(): void
     {
         $constructor = $this->method(self::FILE_PATH, '__construct');
 
@@ -57,9 +57,9 @@ class HumanTest extends TestCase
     }
 
     /**
-     * @test
+     *
      */
-    public function buyCar_nameと指定Carのnameから文字列を出力する(): void
+    public function testBuyCar_nameと指定Carのnameから文字列を出力する(): void
     {
         $car = new Car('car-name');
         $human = new Human('human-name');
@@ -69,9 +69,9 @@ class HumanTest extends TestCase
     }
 
     /**
-     * @test
+     *
      */
-    public function buyCar_引数carの型定義がCarクラスである(): void
+    public function testBuyCar_引数carの型定義がCarクラスである(): void
     {
         $buyCar = $this->method(self::FILE_PATH, 'buyCar');
 
@@ -79,9 +79,9 @@ class HumanTest extends TestCase
     }
 
     /**
-     * @test
+     *
      */
-    public function buyCar_返り値の型定義がvoidである(): void
+    public function testBuyCar_返り値の型定義がvoidである(): void
     {
         $buyCar = $this->method(self::FILE_PATH, 'buyCar');
 

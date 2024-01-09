@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Tests\Station08;
 
@@ -9,7 +9,7 @@ class QuestionTest extends TestCase
 {
     private Question $question;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -17,10 +17,10 @@ class QuestionTest extends TestCase
     }
 
     /**
-     * @test
+     *
      * @group station08
      */
-    public function 整形した二次元配列を返す(): void
+    public function test整形した二次元配列を返す(): void
     {
         $actual = $this->question->main();
 

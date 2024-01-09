@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Tests\Station14\Question;
 
@@ -14,7 +14,7 @@ class CarTest extends TestCase
 {
     private Car $car;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -22,9 +22,9 @@ class CarTest extends TestCase
     }
 
     /**
-     * @test
+     *
      */
-    public function 初期値5の定数DOORを持つ(): void
+    public function test初期値5の定数DOORを持つ(): void
     {
         $car = new ReflectionClass($this->car);
 
@@ -32,9 +32,9 @@ class CarTest extends TestCase
     }
 
     /**
-     * @test
+     *
      */
-    public function 初期値0のstaticなpassengerプロパティを持つ(): void
+    public function test初期値0のstaticなpassengerプロパティを持つ(): void
     {
         $car = new ReflectionClass($this->car);
 
@@ -42,9 +42,9 @@ class CarTest extends TestCase
     }
 
     /**
-     * @test
+     *
      */
-    public function getPassenger_passengerの数を表示する(): void
+    public function testGetPassenger_passengerの数を表示する(): void
     {
         $method = new ReflectionMethod($this->car, 'getPassenger');
         $method->setAccessible(true);
@@ -54,16 +54,16 @@ class CarTest extends TestCase
     }
 
     /**
-     * @test
-     * @dataProvider dataProvider_pickup実行回数ごとの値
+     *
+     * @dataProvider providePickup_passengerに1加算した値を表示するCases
      */
-    public function pickup_passengerに1加算した値を表示する(int $expected): void
+    public function testPickup_passengerに1加算した値を表示する(int $expected): void
     {
         $this->expectOutputString($expected);
         $this->car->pickup();
     }
 
-    public function dataProvider_pickup実行回数ごとの値(): array
+    public function providePickup_passengerに1加算した値を表示するCases(): iterable
     {
         return [
             '初回実行' => [1],
@@ -73,9 +73,9 @@ class CarTest extends TestCase
     }
 
     /**
-     * @test
+     *
      */
-    public function getDoors_DOORの値を表示する(): void
+    public function testGetDoors_DOORの値を表示する(): void
     {
         $this->expectOutputString(5);
         $this->car->getDoors();

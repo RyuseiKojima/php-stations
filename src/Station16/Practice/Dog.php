@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Src\Station16\Practice;
 
@@ -19,11 +19,11 @@ class Dog
 
     public function addAge(int $year): int
     {
-        $this->age = $this->age + $year;
+        $this->age += $year;
         return $this->age;
     }
 
-    public function walkWithDog(Dog $dog): string
+    public function walkWithDog(self $dog): string
     {
         return $this->name . 'と' . $dog->name . 'が散歩する';
     }

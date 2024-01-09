@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Tests\Station17\Question;
 
@@ -16,7 +16,7 @@ class KeyboardTest extends TestCase
 {
     private Keyboard $keyboard;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -24,9 +24,9 @@ class KeyboardTest extends TestCase
     }
 
     /**
-     * @test
+     *
      */
-    public function 第1引数の型がSoundInterfaceである(): void
+    public function test第1引数の型がSoundInterfaceである(): void
     {
         $class = new class implements SoundInterface {
 
@@ -50,10 +50,10 @@ class KeyboardTest extends TestCase
     }
 
     /**
-     * @test
-     * @dataProvider dataProvider_対象楽器音と有効な音名
+     *
+     * @dataProvider provide有効な音名の場合_文字列_指定楽器音を鳴らす_を出力するCases
      */
-    public function 有効な音名の場合_文字列_指定楽器音を鳴らす_を出力する(
+    public function test有効な音名の場合_文字列_指定楽器音を鳴らす_を出力する(
         SoundInterface $sound,
         string $scale,
         string $expected
@@ -62,7 +62,7 @@ class KeyboardTest extends TestCase
         $this->keyboard->play($sound, $scale);
     }
 
-    public function dataProvider_対象楽器音と有効な音名(): array
+    public function provide有効な音名の場合_文字列_指定楽器音を鳴らす_を出力するCases(): iterable
     {
         return [
             'ピアノ' => [new PianoSound(), 'ド', 'ピアノのドを鳴らします'],
@@ -71,16 +71,16 @@ class KeyboardTest extends TestCase
     }
 
     /**
-     * @test
-     * @dataProvider dataProvider_無効な音名について各楽器音を検証
+     *
+     * @dataProvider provide無効な音名の場合_一律に規定文字列を出力Cases
      */
-    public function 無効な音名の場合_一律に規定文字列を出力(SoundInterface $sound): void
+    public function test無効な音名の場合_一律に規定文字列を出力(SoundInterface $sound): void
     {
         $this->expectOutputString('この音を鳴らすことはできません');
         $this->keyboard->play($sound, '無効な音名');
     }
 
-    public function dataProvider_無効な音名について各楽器音を検証(): array
+    public function provide無効な音名の場合_一律に規定文字列を出力Cases(): iterable
     {
         return [
             'ピアノ' => [new PianoSound()],

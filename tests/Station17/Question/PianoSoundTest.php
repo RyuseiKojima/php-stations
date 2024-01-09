@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Tests\Station17\Question;
 
@@ -14,7 +14,7 @@ class PianoSoundTest extends TestCase
 {
     private PianoSound $pianoSound;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -22,9 +22,9 @@ class PianoSoundTest extends TestCase
     }
 
     /**
-     * @test
+     *
      */
-    public function SoundInterfaceをimplementsしている(): void
+    public function testSoundInterfaceをimplementsしている(): void
     {
         $implements = class_implements($this->pianoSound);
 
@@ -32,27 +32,27 @@ class PianoSoundTest extends TestCase
     }
 
     /**
-     * @test
+     *
      */
-    public function 文字列ピアノを値に持つ定数INSTRUMENT_NAMEを定義している(): void
+    public function test文字列ピアノを値に持つ定数INSTRUMENT_NAMEを定義している(): void
     {
         $pianoSound = new ReflectionClass($this->pianoSound);
 
-        $this->assertEquals('ピアノ', $pianoSound->getConstant('INSTRUMENT_NAME'));
+        $this->assertSame('ピアノ', $pianoSound->getConstant('INSTRUMENT_NAME'));
     }
 
     /**
-     * @test
-     * @dataProvider dataProvider_isValidatedInputに対する入力と期待値
+     *
+     * @dataProvider provideIsValidatedInput_ドレミファソラシに該当するか否かを検証するCases
      */
-    public function isValidatedInput_ドレミファソラシに該当するか否かを検証する(string|int $input, bool $expected): void
+    public function testIsValidatedInput_ドレミファソラシに該当するか否かを検証する(string|int $input, bool $expected): void
     {
         $actual = $this->pianoSound->isValidatedInput($input);
 
-        $this->assertEquals($expected, $actual);
+        $this->assertSame($expected, $actual);
     }
 
-    public function dataProvider_isValidatedInputに対する入力と期待値(): array
+    public function provideIsValidatedInput_ドレミファソラシに該当するか否かを検証するCases(): iterable
     {
         return [
             '有効: ド' => ['ド', true],
@@ -69,15 +69,15 @@ class PianoSoundTest extends TestCase
     }
 
     /**
-     * @test
+     *
      *
      * この問題では sound の引数は isValidatedInput を経由したものに限るため
      * 細かな例外チェックは行わない
      */
-    public function sound_楽器名と引数を結合した文字列を返す(): void
+    public function testSound_楽器名と引数を結合した文字列を返す(): void
     {
         $actual = $this->pianoSound->sound('ド');
 
-        $this->assertEquals($actual, 'ピアノのド');
+        $this->assertSame($actual, 'ピアノのド');
     }
 }

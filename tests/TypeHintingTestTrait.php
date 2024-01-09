@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Tests;
 
@@ -6,12 +6,13 @@ use Closure;
 use PhpParser\Node\Stmt\ClassMethod;
 use PhpParser\Node\Stmt\Property;
 use PhpParser\ParserFactory;
+use function count;
 
 trait TypeHintingTestTrait
 {
     private function assertPropertyTypeHinting(string $expectedType, Property $property): void
     {
-        if (is_null($property->type)) {
+        if (null === $property->type) {
             $this->fail($property->props[0]->name->toString() . ' property has no type hinting.');
         }
 
@@ -26,7 +27,7 @@ trait TypeHintingTestTrait
 
         $idx = $number - 1;
 
-        if (is_null($method->params[$idx]->type)) {
+        if (null === $method->params[$idx]->type) {
             $this->fail('parameter $' . $method->params[$idx]->var->name . ' has no type hinting.');
         }
 
@@ -35,7 +36,7 @@ trait TypeHintingTestTrait
 
     private function assertMethodReturnValueTypeHinting(string $expectedType, ClassMethod $method): void
     {
-        if (is_null($method->returnType)) {
+        if (null === $method->returnType) {
             $this->fail('return value of ' . $method->name->toString() . ' method has no type hinting.');
         }
 
@@ -44,7 +45,7 @@ trait TypeHintingTestTrait
 
     private function property(string $filePath, string $name): Property
     {
-        $filteredProperty = $this->filteredStmts($filePath, function ($stmt) use ($name) {
+        $filteredProperty = $this->filteredStmts($filePath, static function ($stmt) use ($name) {
             return $stmt->getType() === 'Stmt_Property'
                 && $stmt->props[0]->name->toString() === $name;
         });
@@ -58,7 +59,7 @@ trait TypeHintingTestTrait
 
     private function method(string $filePath, string $name): ClassMethod
     {
-        $filteredMethod = $this->filteredStmts($filePath, function ($stmt) use ($name) {
+        $filteredMethod = $this->filteredStmts($filePath, static function ($stmt) use ($name) {
             return $stmt->getType() === 'Stmt_ClassMethod'
                 && $stmt->name->toString() === $name;
         });
@@ -77,6 +78,6 @@ trait TypeHintingTestTrait
         $parser = (new ParserFactory)->create(ParserFactory::PREFER_PHP7);
         $stmtsClass = $parser->parse($code)[0]->stmts[0];
 
-        return array_filter($stmtsClass->stmts, fn($stmt) => $filter($stmt));
+        return array_filter($stmtsClass->stmts, static fn ($stmt) => $filter($stmt));
     }
 }

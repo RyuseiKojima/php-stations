@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Src\Station14\Question;
 
@@ -6,9 +6,9 @@ require_once('vendor/autoload.php');
 
 class Question
 {
-  public function main(): void
-  {
-    Car::pickup();
-    Car::getDoors();      
-  }
+    public function main(): void
+    {
+        Car::pickup();
+        Car::getDoors();
+    }
 }

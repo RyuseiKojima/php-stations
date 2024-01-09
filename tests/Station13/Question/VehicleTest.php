@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Tests\Station13\Question;
 
@@ -8,6 +8,7 @@ use ReflectionClass;
 use ReflectionException;
 use ReflectionMethod;
 use Src\Station13\Question\Vehicle;
+use function count;
 
 /**
  * @group station13
@@ -16,7 +17,7 @@ class VehicleTest extends TestCase
 {
     private Vehicle $vehicle;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -24,9 +25,9 @@ class VehicleTest extends TestCase
     }
 
     /**
-     * @test
+     *
      */
-    public function maxSpeedプロパティが定義されている(): void
+    public function testMaxSpeedプロパティが定義されている(): void
     {
         $reflection = new ReflectionClass($this->vehicle);
 
@@ -39,9 +40,9 @@ class VehicleTest extends TestCase
     }
 
     /**
-     * @test
+     *
      */
-    public function nameプロパティが定義されている(): void
+    public function testNameプロパティが定義されている(): void
     {
         $reflection = new ReflectionClass($this->vehicle);
 
@@ -54,9 +55,9 @@ class VehicleTest extends TestCase
     }
 
     /**
-     * @test
+     *
      */
-    public function turnRight_3つの文字列を出力する(): void
+    public function testTurnRight_3つの文字列を出力する(): void
     {
         $reflection = new ReflectionMethod($this->vehicle, 'turnRight');
 
@@ -65,9 +66,9 @@ class VehicleTest extends TestCase
     }
 
     /**
-     * @test
+     *
      */
-    public function backLeft_3つの文字列を出力する(): void
+    public function testBackLeft_3つの文字列を出力する(): void
     {
         $reflection = new ReflectionMethod($this->vehicle, 'backLeft');
 
@@ -76,9 +77,9 @@ class VehicleTest extends TestCase
     }
 
     /**
-     * @test
+     *
      */
-    public function run_文字列_アクセルを踏む_を出力する(): void
+    public function testRun_文字列_アクセルを踏む_を出力する(): void
     {
         $reflection = new ReflectionMethod($this->vehicle, 'run');
 
@@ -87,9 +88,9 @@ class VehicleTest extends TestCase
     }
 
     /**
-     * @test
+     *
      */
-    public function stop_文字列_ブレーキを踏む_を出力する(): void
+    public function testStop_文字列_ブレーキを踏む_を出力する(): void
     {
         $reflection = new ReflectionMethod($this->vehicle, 'stop');
 
@@ -98,9 +99,9 @@ class VehicleTest extends TestCase
     }
 
     /**
-     * @test
+     *
      */
-    public function right_文字列_右にハンドルを回す_を出力する(): void
+    public function testRight_文字列_右にハンドルを回す_を出力する(): void
     {
         $reflection = new ReflectionMethod($this->vehicle, 'right');
 
@@ -109,9 +110,9 @@ class VehicleTest extends TestCase
     }
 
     /**
-     * @test
+     *
      */
-    public function left_文字列_左にハンドルを回す_を出力する(): void
+    public function testLeft_文字列_左にハンドルを回す_を出力する(): void
     {
         $reflection = new ReflectionMethod($this->vehicle, 'left');
 
@@ -120,9 +121,9 @@ class VehicleTest extends TestCase
     }
 
     /**
-     * @test
+     *
      */
-    public function back_文字列_バックする_を出力する(): void
+    public function testBack_文字列_バックする_を出力する(): void
     {
         $reflection = new ReflectionMethod($this->vehicle, 'back');
 
@@ -131,10 +132,10 @@ class VehicleTest extends TestCase
     }
 
     /**
-     * @test
-     * @dataProvider dataProvider_privateメソッド群
+     *
+     * @dataProvider provide他クラスで利用しない各メソッドがprivateになっているCases
      */
-    public function 他クラスで利用しない各メソッドがprivateになっている(string $method): void
+    public function test他クラスで利用しない各メソッドがprivateになっている(string $method): void
     {
         try {
 
@@ -154,7 +155,7 @@ class VehicleTest extends TestCase
         }
     }
 
-    public function dataProvider_privateメソッド群(): array
+    public function provide他クラスで利用しない各メソッドがprivateになっているCases(): iterable
     {
         return [
             ['stop'],

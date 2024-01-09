@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Src\Station13\Practice;
 
@@ -6,9 +6,9 @@ class Animal
 {
     public function active()
     {
-      $this->run();
-      $this->stop();
-      $this->jump();
+        $this->run();
+        $this->stop();
+        $this->jump();
     }
 
     protected function run()

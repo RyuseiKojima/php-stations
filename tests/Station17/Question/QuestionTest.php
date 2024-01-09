@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Tests\Station17\Question;
 
@@ -11,9 +11,9 @@ use Src\Station17\Question\Question;
 class QuestionTest extends TestCase
 {
     /**
-     * @test
+     *
      */
-    public function ピアノとギターの演奏を出力する(): void
+    public function testピアノとギターの演奏を出力する(): void
     {
         $question = new Question();
 

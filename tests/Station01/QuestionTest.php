@@ -1,15 +1,16 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Tests\Station01;
 
 use PHPUnit\Framework\TestCase;
 use Src\Station01\Question;
+use function gettype;
 
 class QuestionTest extends TestCase
 {
     private Question $question;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -17,10 +18,10 @@ class QuestionTest extends TestCase
     }
 
     /**
-     * @test
+     *
      * @group station01
      */
-    public function 返り値の型がint型とbool型である(): void
+    public function test返り値の型がint型とbool型である(): void
     {
         $result = $this->question->main();
 

@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Tests\Station15\Question;
 
@@ -12,7 +12,7 @@ class CalculatorTest extends TestCase
 {
     private Calculator $calculator;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -20,26 +20,26 @@ class CalculatorTest extends TestCase
     }
 
     /**
-     * @test
+     *
      */
-    public function かけられる数の配列が空の場合はfalseを返す(): void
+    public function testかけられる数の配列が空の場合はfalseを返す(): void
     {
         $actual = $this->calculator->multiply([], 1);
 
-        $this->assertEquals(false, $actual);
+        $this->assertFalse($actual);
     }
 
     /**
-     * @test
-     * @dataProvider dataProvider_かけられる数かける数の組み合わせとその積
+     *
+     * @dataProvider provideかけられる値を出力するCases
      */
-    public function かけられる値を出力する(array $multiplied, int $multiplier, array $expected): void
+    public function testかけられる値を出力する(array $multiplied, int $multiplier, array $expected): void
     {
         $actual = $this->calculator->multiply($multiplied, $multiplier);
         $this->assertSame($expected, $actual);
     }
 
-    public function dataProvider_かけられる数かける数の組み合わせとその積(): array
+    public function provideかけられる値を出力するCases(): iterable
     {
         return [
             'かけられる数が 1 個' => [

@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Tests\Station16\Question;
 
@@ -16,9 +16,9 @@ class QuestionTest extends TestCase
     private const FILE_PATH = __DIR__ . '../../../../src/Station16/Question/Question.php';
 
     /**
-     * @test
+     *
      */
-    public function 車を購入して走り乗客を乗せる(): void
+    public function test車を購入して走り乗客を乗せる(): void
     {
         $question = new Question();
 
@@ -27,9 +27,9 @@ class QuestionTest extends TestCase
     }
 
     /**
-     * @test
+     *
      */
-    public function 第1引数の型定義がstringである(): void
+    public function test第1引数の型定義がstringである(): void
     {
         $main = $this->method(self::FILE_PATH, 'main');
 
@@ -37,9 +37,9 @@ class QuestionTest extends TestCase
     }
 
     /**
-     * @test
+     *
      */
-    public function 第2引数の型定義がstringである(): void
+    public function test第2引数の型定義がstringである(): void
     {
         $main = $this->method(self::FILE_PATH, 'main');
 
@@ -47,9 +47,9 @@ class QuestionTest extends TestCase
     }
 
     /**
-     * @test
+     *
      */
-    public function 第3引数の型定義がintである(): void
+    public function test第3引数の型定義がintである(): void
     {
         $main = $this->method(self::FILE_PATH, 'main');
 
@@ -57,9 +57,9 @@ class QuestionTest extends TestCase
     }
 
     /**
-     * @test
+     *
      */
-    public function 返り値の型定義がvoidである(): void
+    public function test返り値の型定義がvoidである(): void
     {
         $main = $this->method(self::FILE_PATH, 'main');
 

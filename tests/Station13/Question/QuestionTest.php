@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Tests\Station13\Question;
 
@@ -11,9 +11,9 @@ use Src\Station13\Question\Question;
 class QuestionTest extends TestCase
 {
     /**
-     * @test
+     *
      */
-    public function turnRight_backLeftを実行する(): void
+    public function testTurnRight_backLeftを実行する(): void
     {
         $question = new Question();
 

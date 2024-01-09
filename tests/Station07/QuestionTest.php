@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Tests\Station07;
 
@@ -9,7 +9,7 @@ class QuestionTest extends TestCase
 {
     private Question $question;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -17,14 +17,14 @@ class QuestionTest extends TestCase
     }
 
     /**
-     * @test
+     *
      * @group station07
      */
-    public function one_期待値と一致するよう結合された連想配列を返す(): void
+    public function testOne_期待値と一致するよう結合された連想配列を返す(): void
     {
         $actual = $this->question->one();
 
-        $this->assertEquals([
+        $this->assertSame([
             '北海道' => 1,
             '東京都' => 13,
             '京都府' => 26,
@@ -34,25 +34,25 @@ class QuestionTest extends TestCase
     }
 
     /**
-     * @test
+     *
      * @group station07
      */
-    public function two_結合した姓名を要素に持つ配列を返す(): void
+    public function testTwo_結合した姓名を要素に持つ配列を返す(): void
     {
         $actual = $this->question->two();
 
-        $this->assertEquals(['山田太郎', '鈴木次郎', '佐藤花子'], $actual);
+        $this->assertSame(['山田太郎', '鈴木次郎', '佐藤花子'], $actual);
     }
 
     /**
-     * @test
+     *
      * @group station07
      */
-    public function three_期待値と一致するよう抽出された連想配列を返す(): void
+    public function testThree_期待値と一致するよう抽出された連想配列を返す(): void
     {
         $actual = $this->question->three();
 
-        $this->assertEquals([
+        $this->assertSame([
             'apple' => 140,
             'banana' => 200,
             'orange' => 120,

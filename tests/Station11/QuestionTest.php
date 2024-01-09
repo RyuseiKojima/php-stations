@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Tests\Station11;
 
@@ -15,7 +15,7 @@ class QuestionTest extends TestCase
     private array $lessThanBudgetSweets;
     private array $sweets;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -38,9 +38,9 @@ class QuestionTest extends TestCase
     }
 
     /**
-     * @test
+     *
      */
-    public function _300円の予算内で3つのお菓子データを抽出する(): void
+    public function test_300円の予算内で3つのお菓子データを抽出する(): void
     {
         $actual = $this->question->main($this->sweets);
         $totalPrice = array_sum(array_column($actual, 'price'));
@@ -50,9 +50,9 @@ class QuestionTest extends TestCase
     }
 
     /**
-     * @test
+     *
      */
-    public function お菓子データの抽出はランダムである(): void
+    public function testお菓子データの抽出はランダムである(): void
     {
         $result1 = $this->question->main($this->sweets);
 
@@ -63,13 +63,13 @@ class QuestionTest extends TestCase
         ];
         $expected = [$result1, $result1, $result1];
 
-        $this->assertNotEquals($expected, $actual);
+        $this->assertNotSame($expected, $actual);
     }
 
     /**
-     * @test
+     *
      */
-    public function getSweetsLessThanBudgetでの処理が命名に合致する(): void
+    public function testGetSweetsLessThanBudgetでの処理が命名に合致する(): void
     {
         $method = new ReflectionMethod($this->question, 'getSweetsLessThanBudget');
         $method->setAccessible(true);
@@ -88,9 +88,9 @@ class QuestionTest extends TestCase
     }
 
     /**
-     * @test
+     *
      */
-    public function getRandomKeysでの処理が命名に合致する(): void
+    public function testGetRandomKeysでの処理が命名に合致する(): void
     {
         $method = new ReflectionMethod($this->question, 'getRandomKeys');
         $method->setAccessible(true);
@@ -107,9 +107,9 @@ class QuestionTest extends TestCase
     }
 
     /**
-     * @test
+     *
      */
-    public function makeCombinationでの処理が命名に合致する(): void
+    public function testMakeCombinationでの処理が命名に合致する(): void
     {
         $method = new ReflectionMethod($this->question, 'makeCombination');
         $method->setAccessible(true);

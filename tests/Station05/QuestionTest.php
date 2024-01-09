@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Tests\Station05;
 
@@ -9,7 +9,7 @@ class QuestionTest extends TestCase
 {
     private Question $question;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -17,13 +17,13 @@ class QuestionTest extends TestCase
     }
 
     /**
-     * @test
+     *
      * @group station05
      */
-    public function _1から9のうち3と7以上の値を除く数値の加算結果を返す(): void
+    public function test_1から9のうち3と7以上の値を除く数値の加算結果を返す(): void
     {
         $result = $this->question->main();
 
-        $this->assertEquals(1+2+4+5+6, $result);
+        $this->assertSame(1+2+4+5+6, $result);
     }
 }

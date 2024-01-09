@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Tests\Station15\Question;
 
@@ -11,10 +11,10 @@ use Src\Station15\Question\Question;
 class QuestionTest extends TestCase
 {
     /**
-     * @test
-     * @dataProvider dataProvider_かける数と期待値
+     *
+     * @dataProvider provide1から3までの数値をN倍した整数の値を出力するCases
      */
-    public function _1から3までの数値をN倍した整数の値を出力する(int $multiplier, array $expected): void
+    public function test_1から3までの数値をN倍した整数の値を出力する(int $multiplier, array $expected): void
     {
         $question = new Question();
 
@@ -25,7 +25,7 @@ class QuestionTest extends TestCase
     /**
      * 偶数と奇数 1 つずつのみチェック
      */
-    public function dataProvider_かける数と期待値(): array
+    public function provide1から3までの数値をN倍した整数の値を出力するCases(): iterable
     {
         return [
             'かける数=2' => [

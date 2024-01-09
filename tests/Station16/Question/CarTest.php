@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Tests\Station16\Question;
 
@@ -18,7 +18,7 @@ class CarTest extends TestCase
     private Car $car;
     private const FILE_PATH = __DIR__ . '../../../../src/Station16/Question/Car.php';
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -26,17 +26,17 @@ class CarTest extends TestCase
     }
 
     /**
-     * @test
+     *
      */
-    public function nameプロパティを持つ(): void
+    public function testNameプロパティを持つ(): void
     {
         $this->assertClassHasAttribute('name', Car::class);
     }
 
     /**
-     * @test
+     *
      */
-    public function nameプロパティの型定義がstringである(): void
+    public function testNameプロパティの型定義がstringである(): void
     {
         $name = $this->property(self::FILE_PATH, 'name');
 
@@ -44,9 +44,9 @@ class CarTest extends TestCase
     }
 
     /**
-     * @test
+     *
      */
-    public function 初期値0のpassengerプロパティを持つ(): void
+    public function test初期値0のpassengerプロパティを持つ(): void
     {
         $reflection = new ReflectionClass($this->car);
 
@@ -58,9 +58,9 @@ class CarTest extends TestCase
     }
 
     /**
-     * @test
+     *
      */
-    public function passengerプロパティの型定義がintである(): void
+    public function testPassengerプロパティの型定義がintである(): void
     {
         $passenger = $this->property(self::FILE_PATH, 'passenger');
 
@@ -68,9 +68,9 @@ class CarTest extends TestCase
     }
 
     /**
-     * @test
+     *
      */
-    public function constructor_nameプロパティに値を代入する(): void
+    public function testConstructor_nameプロパティに値を代入する(): void
     {
         $namedCar = new Car('constructor-test');
         $reflection = new ReflectionClass(Car::class);
@@ -79,9 +79,9 @@ class CarTest extends TestCase
     }
 
     /**
-     * @test
+     *
      */
-    public function constructor_引数nameの型定義がstringである(): void
+    public function testConstructor_引数nameの型定義がstringである(): void
     {
         $constructor = $this->method(self::FILE_PATH, '__construct');
 
@@ -89,9 +89,9 @@ class CarTest extends TestCase
     }
 
     /**
-     * @test
+     *
      */
-    public function run_文字列_走行する_を出力する(): void
+    public function testRun_文字列_走行する_を出力する(): void
     {
         $car = new Car('test');
 
@@ -100,9 +100,9 @@ class CarTest extends TestCase
     }
 
     /**
-     * @test
+     *
      */
-    public function run_返り値の型定義がvoidである(): void
+    public function testRun_返り値の型定義がvoidである(): void
     {
         $run = $this->method(self::FILE_PATH, 'run');
 
@@ -110,10 +110,10 @@ class CarTest extends TestCase
     }
 
     /**
-     * @test
-     * @dataProvider dataProvider_passengerに加算する値と期待値
+     *
+     * @dataProvider providePickup_指定された分passengerを加算してその値を返すCases
      */
-    public function pickup_指定された分passengerを加算してその値を返す(int $passengers, int $expected): void
+    public function testPickup_指定された分passengerを加算してその値を返す(int $passengers, int $expected): void
     {
         $car = new Car('test');
         $reflection = new ReflectionClass($car);
@@ -122,7 +122,7 @@ class CarTest extends TestCase
         $this->assertSame($expected, $reflection->getProperty('passenger')->getValue($car));
     }
 
-    public function dataProvider_passengerに加算する値と期待値(): array
+    public function providePickup_指定された分passengerを加算してその値を返すCases(): iterable
     {
         return [
             '0加算' => [0, 0],
@@ -132,9 +132,9 @@ class CarTest extends TestCase
     }
 
     /**
-     * @test
+     *
      */
-    public function pickup_引数の型定義がintである(): void
+    public function testPickup_引数の型定義がintである(): void
     {
         $pickup = $this->method(self::FILE_PATH, 'pickup');
 
@@ -142,9 +142,9 @@ class CarTest extends TestCase
     }
 
     /**
-     * @test
+     *
      */
-    public function pickup_返り値の型定義がintである(): void
+    public function testPickup_返り値の型定義がintである(): void
     {
         $pickup = $this->method(self::FILE_PATH, 'pickup');
 

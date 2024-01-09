@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Src\Station07;
 
@@ -9,7 +9,7 @@ class Question
         $array1 = ['北海道' => 1, '東京都' => 13, '大阪府' => 'XX'];
         $array2 = ['広島県' => 34, '京都府' => 26];
         $array3 = ['京都府' => 'XX', '大阪府' => 27];
-        $mergedArray = array_merge($array1, $array3,$array2);
+        $mergedArray = array_merge($array1, $array3, $array2);
         print_r($mergedArray);
         return $mergedArray;
     }
@@ -19,9 +19,9 @@ class Question
         $firstNames = ['太郎', '次郎', '花子'];
         $lastNames = ['山田', '鈴木', '佐藤'];
 
-        $fullNames = array_map(function ($firstName, $lastName) {
-          $fullName = $lastName . $firstName;
-          return $fullName;
+        $fullNames = array_map(static function ($firstName, $lastName) {
+            $fullName = $lastName . $firstName;
+            return $fullName;
         }, $firstNames, $lastNames);
 
         print_r($fullNames);
@@ -44,4 +44,3 @@ class Question
 }
 
 (new Question())->three();
-
